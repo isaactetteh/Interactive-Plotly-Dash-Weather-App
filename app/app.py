@@ -30,7 +30,8 @@ def make_weather_table( dtf):
 def api_call(input_value="Ames,us"):
 	city = input_value.replace(" ", "").split(" ")[0]
 	state = 'us'
-	r = requests.get("http://api.openweathermap.org/data/2.5/forecast?q={},{}&appid=1a5f1a13b6a17aad19b3663428ad26e9".format(city,state))
+	key = '' #put api key here
+	r = requests.get("http://api.openweathermap.org/data/2.5/forecast?q={},{}&appid={}".format(city,state,key))
 	data = r.json()
 
 	day = [calendar.day_name[(datetime.strptime(data["list"][i]['dt_txt'].split(" ")[0],'%Y-%M-%d')).weekday()] for i in range(3,36,8)]
